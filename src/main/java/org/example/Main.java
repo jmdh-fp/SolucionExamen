@@ -24,17 +24,22 @@ public class Main {
 
             // *** PUNTO 2. ENUNCIADO
 
-            Comparator<Producto> ordenPrecio = new Comparator<Producto>() {
+            Comparator<Producto> ordenPrecio = new Comparator<>() {
                 @Override
                 public int compare(Producto o1, Producto o2) {
-                    double temp = o1.getPrecio() - o2.getPrecio();
-                    return temp > 0.0 ? 1 : (temp < 0.0 ? -1 : 0);
-                    // Alternativa: return Double.compare(o1.getPrecio(),o2.getPrecio());
+                    return Double.compare(o1.getPrecio(),o2.getPrecio());
+
+                    // Alternativa:
+                    // double temp = o1.getPrecio() - o2.getPrecio();
+                    // return temp > 0.0 ? 1 : (temp < 0.0 ? -1 : 0);
                 }
             };
 
             // Ordena por precio ascendente
             productoList.sort(ordenPrecio);
+
+            // Alternativa. Línea 27 a 39 se puede sustituir por esto sola de abajo.
+            //productoList.sort(Comparator.comparingDouble(Producto::getPrecio));
 
             fwOrdenPrecio.write(cabecerasProd + SALTO_LINEA); // Escribe la cabecera
 
