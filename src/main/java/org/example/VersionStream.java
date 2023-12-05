@@ -59,6 +59,7 @@ public class VersionStream {
         try (Stream<String> strProd = Files.lines(pathOrdenPrecio);
              Stream<String> strIva = Files.lines(Paths.get("iva.csv"));
              FileWriter fw = new FileWriter("temporal.csv")) {
+
             // hashmap con iva
             Map<String, Double> iva = new HashMap<>();
             strIva.skip(1).forEach(x -> {
@@ -68,7 +69,7 @@ public class VersionStream {
 
             fw.write(CABECERA+";IVA%;PRECIO+IVA"+SEP_LINEA);
 
-            strProd.skip(1).map(p -> addCampos(p, iva)).forEach(x -> escribeLinea(fw, x));
+            strProd.skip(1).map(linea -> addCampos(linea, iva)).forEach(linea -> escribeLinea(fw, linea));
 
         } catch (IOException e) {
             System.out.println("Error con ficheros");
