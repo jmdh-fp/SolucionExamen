@@ -107,8 +107,7 @@ public class Main {
                                 .append(";")
                                 .append(ivaHashMap.get(p.getFamilia()))
                                 .append(";")
-                                .append(p.getPrecio() + ivaHashMap.get(p.getFamilia()) * p.getPrecio() / 100)
-                                //p.getPrecio() *(1 + ivaHashMap.get(p.getFamilia())/100)
+                                .append(p.getPrecio() * (1 + ivaHashMap.get(p.getFamilia())  / 100))
                                 .append(SALTO_LINEA).toString()
                 );
             }
